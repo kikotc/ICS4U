@@ -5,7 +5,7 @@ public class OldFishinHole {
         Scanner input = new Scanner(System.in);
 
         byte troutPoints = input.nextByte(), pikePoints = input.nextByte(), pickerelPoints = input.nextByte(), totalPoints = input.nextByte();
-        byte possibilities = 0;
+        int possibilities = 0;
 
         for (byte trout = 0; trout <= totalPoints / troutPoints; trout++) {
             byte afterTrout = (byte) (totalPoints - (trout * troutPoints));
