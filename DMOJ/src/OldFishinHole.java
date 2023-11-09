@@ -10,15 +10,15 @@ public class OldFishinHole {
 
         //loops through all possible quantities of trout
         for (byte trout = 0; trout <= totalPoints / troutPoints; trout++) {
-            //amount of points left after catching that many trouts
+            //points left after catching that many trouts
             byte afterTrout = (byte) (totalPoints - (trout * troutPoints));
             //all possible quantities of pike with the points left
             for (byte pike = 0; pike <= afterTrout / pikePoints; pike++) {
-                //amount of points left after catching that many trouts and pikes
+                //points left after catching that many trouts and pikes
                 byte afterPike = (byte) (afterTrout - (pike * pikePoints));
                 //all possible quantities of pickerel with the points left
                 for (byte pickerel = 0; pickerel <= afterPike / pickerelPoints; pickerel++) {
-                    //skips iteration if no fish is caught, faster than using not equals to 0
+                    //skips iteration if no fish is caught
                     if (trout == 0 && pike == 0 && pickerel == 0) {
                         continue;
                     }
