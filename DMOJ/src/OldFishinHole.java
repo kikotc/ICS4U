@@ -1,5 +1,12 @@
 import java.util.Scanner;
 
+/**
+ * @author Kiko C
+ * @version 1.0
+ * 
+ * Solves the CCC '09 J2 - Old Fishin' Hole problem (https://dmoj.ca/problem/ccc09j2)
+ */
+
 public class OldFishinHole {
     public static void main (String[] args) {
         Scanner input = new Scanner(System.in);
