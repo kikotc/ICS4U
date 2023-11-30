@@ -13,13 +13,13 @@ public class SimpleEncryption {
         char[] keyword = input.nextLine().toCharArray();
         //removes all non alphabetic characters before turning into array
         char[] message = input.nextLine().replaceAll("[^A-Z]+", "").toCharArray();
+        input.close();
         //loop though characters in the message
         for (int charPos = 0; charPos < message.length; charPos++){
             //matches the character with its letter shift (column) using modulo, then shift it using the method
             message[charPos] = shift(message[charPos],keyword[charPos % keyword.length]);
         }
         System.out.println(message);
-        input.close();
     }
 
     //method that shifts letter by a letter shift
