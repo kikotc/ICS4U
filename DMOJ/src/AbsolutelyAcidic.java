@@ -15,15 +15,20 @@ public class AbsolutelyAcidic {
         Arrays.sort(readings);
         int occurances = 0;
         int lastOccurances = 0;
+        boolean twoFrequencies = false;
         for (int readingNum = 0; readingNum < numberOfSensors - 1; readingNum++) {
             if (readings[readingNum] == readings[readingNum + 1]) {
                 occurances++;
-            } else if (lastOccurances <= occurances) {
+            //multiple one frequency
+            } else if ((lastOccurances == occurances) && sorted.size() != 1) {
                 sorted.add(Integer.valueOf(readings[readingNum]));
                 lastOccurances = occurances;
                 occurances = 0;
-            } else {
-                break;
+            } else if (sorted.size() == 1) {
+                twoFrequencies = true;
+                sorted.add(Integer.valueOf(readings[readingNum]));
+                lastOccurances = occurances;
+                occurances = 0;
             }
         }
         
