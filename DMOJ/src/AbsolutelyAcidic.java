@@ -17,8 +17,6 @@ public class AbsolutelyAcidic {
 
 		Arrays.sort(readings);
 		HashMap<Integer,Integer> counted = new HashMap<Integer,Integer>();
-        LinkedHashMap<Integer, Integer> sorted = new LinkedHashMap<>();
-        ArrayList<Integer> list = new ArrayList<>();
 
 		int occurances = 1;
 		for (int readingNum = 0; readingNum < numberOfSensors; readingNum++) {
@@ -30,20 +28,19 @@ public class AbsolutelyAcidic {
 			}
 		}
 
-        for (Map.Entry<Integer, Integer> entry : counted.entrySet()) {
-            list.add(entry.getValue());
-        }
-        Collections.sort(list, Collections.reverseOrder());
-        for (int num : list) {
-            for (Entry<Integer, Integer> entry : counted.entrySet()) {
-                if (entry.getValue().equals(num)) {
-                    sorted.put(entry.getKey(), num);
-                }
+        int highestFrequency = 0;
+        int secondFrequency = 0;
+
+        for (Integer value : counted.values()) {
+            if (value > highestFrequency) {
+                highestFrequency = value;
+            } else if (value > secondFrequency) {
+                secondFrequency = value;
             }
         }
-		
+
 		System.out.println(numberOfSensors + ": " + Arrays.toString(readings));
 		System.out.println(counted);
-        System.out.println(list);
+        System.out.println(highestFrequency + ", " + secondFrequency);
 	}
 }
