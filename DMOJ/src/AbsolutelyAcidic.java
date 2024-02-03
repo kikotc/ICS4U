@@ -59,14 +59,14 @@ public class AbsolutelyAcidic {
 		// if there are multiple highest frequencies, calculate difference from highest
 		// and lowest number
 		if (firstFrequencyOccurance > 1) {
-			short lowestValue = 1001;
-			short highestValue = 0;
+			short lowestValue = readings[0];
+			short highestValue = readings[0];
 			for (Map.Entry<Integer, Integer> entry : counted.entrySet()) {
 				if (entry.getValue() == firstFrequency) {
 					short key = entry.getKey().shortValue();
 					if (key < lowestValue) {
 						lowestValue = key;
-					} else if (key > highestValue) {
+					} if (key > highestValue) {
 						highestValue = key;
 					}
 				}
@@ -76,8 +76,8 @@ public class AbsolutelyAcidic {
 		// else compair difference between the highest frequency number with the
 		// highest/lowest second highest frequency number to get the result
 		else {
-			short lowestValue = 1001;
-			short highestValue = 0;
+			short lowestValue = readings[0];
+			short highestValue = readings[0];
 			short firstValue = 0;
 			short key;
 			for (Map.Entry<Integer, Integer> entry : counted.entrySet()) {
