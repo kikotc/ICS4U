@@ -1,5 +1,11 @@
 import java.util.*;
-import java.util.Map.Entry;
+
+/**
+ * @author Kiko C
+ * @version 1.0
+ * 
+ * Solves the CCC '12 S3 - Absolutely Acidic problem (https://dmoj.ca/problem/ccc12s3)
+ */
 
 public class AbsolutelyAcidic {
 	public static void main(String[] args) {
@@ -13,11 +19,13 @@ public class AbsolutelyAcidic {
 			readings[readingNum] = input.nextShort();
 		}
 		input.close();
+		// added value as a buffer for the loop
 		readings[numberOfSensors] = 1001;
 
 		Arrays.sort(readings);
 		HashMap<Integer, Integer> counted = new HashMap<Integer, Integer>();
 
+		// count occurances and store in hashMap
 		int occurances = 1;
 		for (int readingNum = 0; readingNum < numberOfSensors; readingNum++) {
 			if (readings[readingNum] == readings[readingNum + 1]) {
@@ -31,9 +39,16 @@ public class AbsolutelyAcidic {
 		int firstFrequency = 0;
 		int secondFrequency = 0;
 
+		// find the two highest frequencies
 		for (Integer value : counted.values()) {
 			if (value > firstFrequency) {
 				firstFrequency = value;
+			}
+		}
+		int firstFrequencyOccurance = 0;
+		for (Integer value : counted.values()) {
+			if (value == firstFrequency) {
+				firstFrequencyOccurance++;
 			} else if (value > secondFrequency) {
 				secondFrequency = value;
 			}
@@ -41,7 +56,9 @@ public class AbsolutelyAcidic {
 
 		int difference = 0;
 
-		if (firstFrequency == secondFrequency) {
+		// if there are multiple highest frequencies, calculate difference from highest
+		// and lowest number
+		if (firstFrequencyOccurance > 1) {
 			short lowestValue = 1001;
 			short highestValue = 0;
 			for (Map.Entry<Integer, Integer> entry : counted.entrySet()) {
@@ -55,12 +72,10 @@ public class AbsolutelyAcidic {
 				}
 			}
 			difference = highestValue - lowestValue;
-		} else {
-			if (secondFrequency > firstFrequency) {
-				int temp = firstFrequency;
-				firstFrequency = secondFrequency;
-				secondFrequency = temp;
-			}
+		}
+		// else compair difference between the highest frequency number with the
+		// highest/lowest second highest frequency number to get the result
+		else {
 			short lowestValue = 1001;
 			short highestValue = 0;
 			short firstValue = 0;
@@ -73,7 +88,8 @@ public class AbsolutelyAcidic {
 				if (entry.getValue() == secondFrequency) {
 					if (key < lowestValue) {
 						lowestValue = key;
-					} else if (key > highestValue) {
+					}
+					if (key > highestValue) {
 						highestValue = key;
 					}
 				}
@@ -81,11 +97,6 @@ public class AbsolutelyAcidic {
 			difference = Math.max(Math.abs(firstValue - lowestValue), Math.abs(firstValue - highestValue));
 		}
 
-		/*
-		 * System.out.println(numberOfSensors + ": " + Arrays.toString(readings));
-		 * System.out.println(counted);
-		 * System.out.println(firstFrequency + ", " + secondFrequency);
-		 */
 		System.out.println(difference);
 	}
 }
